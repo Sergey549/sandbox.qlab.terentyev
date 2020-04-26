@@ -4,54 +4,57 @@ public class MyFirstTest {
 
     @BeforeAll
     static void beforeAllTests() {
-        System.out.println("MyFirstTest class started");
+        textTyping("MyFirstTest class started");
     }
 
     @BeforeEach
     public void beforeEachTest() {
-        System.out.println("Test start");
+        textTyping("Test start");
     }
+
 
     @Test
     public void myTest() {
-        System.out.println("My first autotest running");
+        textTyping("My first autotest running");
     }
 
     @Test
     public void test1() {
-        System.out.println("Test №1");
+        textTyping("Test №1");
     }
-
 
     @Test
     public void test2() {
-        System.out.println("Test №2");
+        textTyping("Test №2");
     }
 
     @Test
     public void test3() {
-        System.out.println("Test №3");
+        textTyping("Test №3");
     }
 
     @Test
     public void test4() {
-        System.out.println("Test №4");
+        textTyping("Test №4");
     }
 
     @Test
     public void test5() {
-        System.out.println("Test №5");
+        textTyping("Test №5");
     }
 
+    private static void textTyping(String s) {
+        System.out.println(s);
+    }
 
     @AfterEach
     public void afterEachTests() {
-        System.out.println("Test finished");
+        textTyping("Test finished");
     }
 
     @AfterAll
     static void afterAllTests() {
-        System.out.println("MyFirstTest class finished");
+        textTyping("MyFirstTest class finished");
     }
 
 }
