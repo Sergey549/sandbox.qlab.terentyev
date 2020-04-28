@@ -1,26 +1,13 @@
-import java.util.concurrent.TimeUnit;
-import org.junit.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.junit.Test;
+import org.openqa.selenium.Dimension;
 
-
-public class LoginTest {
-    private WebDriver driver;
-
-    @Before
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    }
+public class LoginTest extends TestBase {
 
     @Test
-    public void testUntitledTestCase() {
+    public void TestCase() {
+        //Меняем заданный при инициализации размер окна
+        driver.manage().window().setSize(new Dimension(210, 100));
         driver.get("https://tt-develop.quality-lab.ru/login");
-
     }
 
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
 }
