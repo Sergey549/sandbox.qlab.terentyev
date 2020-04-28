@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
-
     public WebDriver driver;
 
     @Before
