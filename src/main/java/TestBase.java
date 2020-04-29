@@ -4,13 +4,14 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
     public WebDriver driver;
-
+    public WebDriver wait;
     @Before
     public void initWebDriver() {
         iniWebDriver();
@@ -23,10 +24,11 @@ public class TestBase {
         options.addArguments("--window-size=500,500");
         //Запуск браузера на весь экран
         //driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         //Меняем заданный при инициализации размер окна
         //driver.manage().window().setSize(new Dimension(210, 100));
         driver.get("https://tt-develop.quality-lab.ru/login");
+        WebDriverWait wait = new WebDriverWait(driver, 5);
     }
 
     @After
