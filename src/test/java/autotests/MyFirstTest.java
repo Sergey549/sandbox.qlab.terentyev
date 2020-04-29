@@ -1,3 +1,5 @@
+package autotests;
+
 import com.codeborne.selenide.junit.SoftAsserts;
 import org.junit.Assert;
 import org.junit.jupiter.api.*;
@@ -9,7 +11,7 @@ public class MyFirstTest {
 
     @BeforeAll
     static void beforeAllTests() {
-        textTyping("MyFirstTest class started");
+        textTyping("autotests.MyFirstTest class started");
     }
 
     @BeforeEach
@@ -71,7 +73,7 @@ public class MyFirstTest {
 
     @AfterAll
     static void afterAllTests() {
-        textTyping("MyFirstTest class finished");
+        textTyping("autotests.MyFirstTest class finished");
     }
 
 }

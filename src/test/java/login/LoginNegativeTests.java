@@ -1,3 +1,5 @@
+package login;
+
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -5,7 +7,7 @@ import org.openqa.selenium.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.fail;
 
 
-public class LoginTest extends TestBase {
+public class LoginNegativeTests extends TestBase {
 
     @Test
     public void incorrectUserNameAndPassword() {

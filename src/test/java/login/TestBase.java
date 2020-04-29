@@ -1,3 +1,6 @@
+package login;
+
+import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.Dimension;
@@ -34,5 +37,8 @@ public class TestBase {
     @After
     public void quitBrowser() {
         driver.quit();
+        if (driver != null) {
+        } else System.out.println("fail");
+
     }
 }
