@@ -36,10 +36,10 @@ public class TestBase {
 
     @After
     public void quitBrowser() {
+        if (loginPage.driver !=null)
         loginPage.driver.quit();
-        if (loginPage.driver.quit() = null) {
-            System.out.println("fail");
-        }
+        else System.out.println("There is no driver");
+        loginPage.driver = new ChromeDriver();
     }
 
     public LoginPage getLoginPage() {
