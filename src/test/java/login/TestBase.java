@@ -39,7 +39,6 @@ public class TestBase {
         if (loginPage.driver !=null)
         loginPage.driver.quit();
         else System.out.println("There is no driver");
-        loginPage.driver = new ChromeDriver();
     }
 
     public LoginPage getLoginPage() {
