@@ -8,8 +8,10 @@ import org.openqa.selenium.WebDriver;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class LoginPage {
+
     private final By cssSelector = By.cssSelector("input[value='Войти']");
     private final By xpath = By.xpath(".//*[text()='Invalid credentials.']/..");
+
     public WebDriver driver;
 
     public void login(String username, String password) {
@@ -27,9 +29,9 @@ public class LoginPage {
     private void catchAnException() {
         try {
             getElementPresent();
-            Assertions.fail();
-            fail();
-        } catch (NoSuchElementException ignored){}
+        } catch (NoSuchElementException ignored){
+            System.out.println("AnElementIsNotPresent");
+        }
     }
 
     private void enterButtonClick() {

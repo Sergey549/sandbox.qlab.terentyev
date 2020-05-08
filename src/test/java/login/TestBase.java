@@ -6,10 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestBase {
 
@@ -39,9 +37,9 @@ public class TestBase {
     @After
     public void quitBrowser() {
         loginPage.driver.quit();
-        if (loginPage.driver != null) {
-        } else System.out.println("fail");
-
+        if (loginPage.driver.quit() = null) {
+            System.out.println("fail");
+        }
     }
 
     public LoginPage getLoginPage() {
