@@ -1,20 +1,21 @@
 package login;
 
-import org.junit.jupiter.api.Assertions;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class LoginPage {
 
     private final By cssSelector = By.cssSelector("input[value='Войти']");
     private final By xpath = By.xpath(".//*[text()='Invalid credentials.']/..");
+    private final By name = By.name("_username");
+    private final By userPassword = By.id("password");
+
 
     public WebDriver driver;
 
-    public void login(String username, String password) {
+    public void icorrectLogin(String username, String password) {
         fillUsernameField(username);
         fillPasswordField(password);
         catchAnException();
@@ -22,31 +23,59 @@ public class LoginPage {
         getElementPresent();
     }
 
-    private void getElementPresent() {
-        driver.findElement(xpath);
+    public void correctLogin(String username, String password) {
+        fillUsernameField(username);
+        fillPasswordField(password);
+        catchAnException();
+        enterButtonClick();
+        catchAnException();
+        redirecttCheck();
+        checkCorrectUserData();
     }
 
-    private void catchAnException() {
-        try {
-            getElementPresent();
-        } catch (NoSuchElementException ignored){
-            System.out.println("AnElementIsNotPresent");
-        }
+    public void fillUsernameField(String username) {
+
+        type(username, name);
+    }
+    public void fillPasswordField(String password) {
+        type(password, userPassword);
     }
 
-    private void enterButtonClick() {
+    public void enterButtonClick() {
         driver.findElement(cssSelector).click();
     }
 
-    private void fillPasswordField(String password) {
-        driver.findElement(By.id("password")).click();
-        driver.findElement(By.id("password")).clear();
-        driver.findElement(By.id("password")).sendKeys(password);
+    public void getElementPresent() {
+        driver.findElement(xpath);
     }
 
-    private void fillUsernameField(String username) {
-        driver.findElement(By.name("_username")).click();
-        driver.findElement(By.name("_username")).clear();
-        driver.findElement(By.name("_username")).sendKeys(username);
+    public void catchAnException() {
+        try {
+            getElementPresent();
+        } catch (NoSuchElementException ignored){
+            System.out.println("The entered userdata is correct. You will be logged in");
+        }
     }
+
+    public void redirecttCheck() {
+
+        String url = driver.getCurrentUrl();
+        Assert.assertEquals(url, "https://tt-develop.quality-lab.ru/report/group/edit" );
+    }
+
+    public void checkCorrectUserData() {
+        driver.findElement(By.id("m_header_topbar"));
+        driver.findElement(By.id("m_header_topbar")).click();
+        driver.findElement(By.cssSelector("div[class='m-card-user m-card-user--skin-dark']")).getAttribute("");
+        //driver.findElement(By.id("div[class='m-card-user m-card-user--skin-dark']")).getAttribute("fake+329@quality-lab.ru");
+
+    }
+
+    private void type(String password, By userPassword) {
+        driver.findElement(userPassword).click();
+        driver.findElement(userPassword).clear();
+        driver.findElement(userPassword).sendKeys(password);
+    }
+
+
 }

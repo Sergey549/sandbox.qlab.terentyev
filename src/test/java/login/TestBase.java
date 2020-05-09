@@ -5,11 +5,12 @@ import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.concurrent.TimeUnit;
 
 
-public class TestBase {
+public abstract class TestBase {
 
     protected final LoginPage loginPage = new LoginPage();
     public WebDriver wait;
@@ -24,9 +25,9 @@ public class TestBase {
         ChromeOptions options = new ChromeOptions();
         loginPage.driver = new ChromeDriver(options);
         //Запуск браузера в окне размером 500х500
-        options.addArguments("--window-size=500,500");
+        //options.addArguments("--window-size=500,500");
         //Запуск браузера на весь экран
-        //driver.manage().window().maximize();
+        loginPage.driver.manage().window().maximize();
         loginPage.driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         //Меняем заданный при инициализации размер окна
         //driver.manage().window().setSize(new Dimension(210, 100));
@@ -44,4 +45,6 @@ public class TestBase {
     public LoginPage getLoginPage() {
         return loginPage;
     }
+
+
 }
