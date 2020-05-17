@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public class LoginNegativeTests extends TestBase {
 
-    @Test
+    //@Test
     public void incorrectUserNameAndPassword() {
 
         String userName = "TestUser";
@@ -16,10 +16,13 @@ public class LoginNegativeTests extends TestBase {
                 .fillUserPasswordField(userPassword)
                 .catchAnExceptionMethod()
                 .enterButtonClick()
-                .checkValidationWebElementIsPresent();
+                .checkValidationWebElementIsPresent()
+                .checkTextInFieldUserNameIsSaved()
+                .checkPasswordFieldIsEmpty();
     }
 
-    @Test
+
+    //@Test
 
     public void checkUrl() {
 
@@ -28,5 +31,22 @@ public class LoginNegativeTests extends TestBase {
                 .enterButtonClick()
                 .catchAnExceptionMethod()
                 .checkCurrentLoginPageUrlIsTrue();
+    }
+
+
+    @Test
+    public void correctUserNameAndPassword() {
+        String userName = "Сергей Терентьев";
+        String userPassword = "aHbtYp2508912";
+
+        ReportGroupEditPage ReportGroupEditPage = new LoginPage()
+                .openLoginPage()
+                .fillUserNameField(userName)
+                .fillUserPasswordField(userPassword)
+                .catchAnExceptionMethod()
+                .enterButtonClick()
+                .checkCurrentPageUrlIsReportGroupEdit()
+                .clickAvatar()
+                .checkSecondUserName();
     }
 }
