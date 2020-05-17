@@ -30,7 +30,6 @@ public class LoginPage {
 
     public LoginPage openLoginPage() {
         driver.get("https://tt-develop.quality-lab.ru/login");
-        PageFactory.initElements(driver, this);
         return this;
     }
 
