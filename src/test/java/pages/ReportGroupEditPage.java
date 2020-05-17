@@ -11,7 +11,7 @@ public class ReportGroupEditPage {
     private final WebDriver driver;
 
     @FindBy(xpath = "//span/div/div")
-    private WebElement avatarImput;
+    private WebElement avatarIcon;
 
     @FindBy(css = "span.m-card-user__name")
     private WebElement secondName;
@@ -25,7 +25,7 @@ public class ReportGroupEditPage {
     }
 
     public ReportGroupEditPage clickAvatar() {
-        avatarImput.click();
+        avatarIcon.click();
         return this;
     }
 
