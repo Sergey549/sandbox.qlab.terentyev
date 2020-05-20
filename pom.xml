@@ -79,6 +79,19 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- https://github.com/yandex-qatools/htmlelements -->
+        <dependency>
+            <groupId>ru.yandex.qatools.htmlelements</groupId>
+            <artifactId>htmlelements-java</artifactId>
+            <version>1.19</version>
+        </dependency>
+        <!-- https://search.maven.org/search?q=g:com.codeborne%20AND%20a:selenide -->
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>5.11.1</version>
+        </dependency>
+
     </dependencies>
 
 

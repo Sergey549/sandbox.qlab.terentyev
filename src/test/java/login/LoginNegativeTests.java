@@ -21,7 +21,7 @@ public class LoginNegativeTests extends TestBase {
                 .checkPasswordFieldIsEmpty();
     }
 
-    @Test
+   @Test
 
     public void checkUrl() {
 
@@ -31,4 +31,5 @@ public class LoginNegativeTests extends TestBase {
                 .catchAnExceptionMethod()
                 .checkCurrentLoginPageUrlIsTrue();
     }
+
 }
