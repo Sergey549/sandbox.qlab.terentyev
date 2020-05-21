@@ -7,13 +7,10 @@ public class LoginNegativeTests extends TestBase {
     @Test
     public void incorrectUserNameAndPassword() {
 
-        String userName = "TestUser";
-        String userPassword = "Password";
-
         new LoginPage(driver)
                 .openLoginPage()
-                .fillUserNameField(userName)
-                .fillUserPasswordField(userPassword)
+                .fillUserNameField("TestUser")
+                .fillUserPasswordField("Password")
                 .catchAnExceptionMethod()
                 .enterButtonClick()
                 .checkValidationWebElementIsPresent()
@@ -21,7 +18,7 @@ public class LoginNegativeTests extends TestBase {
                 .checkPasswordFieldIsEmpty();
     }
 
-   @Test
+  // @Test
 
     public void checkUrl() {
 

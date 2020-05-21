@@ -1,10 +1,13 @@
 package pages;
 
+import login.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class ReportGroupEditPage {
 
@@ -29,17 +32,10 @@ public class ReportGroupEditPage {
         return this;
     }
 
-    public ReportGroupEditPage checkSecondUserName() {
-        String s1 = secondName.getText();
-        System.out.println("The User Mane is: " + s1);
-        Assert.assertEquals(s1, "Терентьев Сергей Константинович");
-        return this;
-    }
-
-    public ReportGroupEditPage checkUserEmail() {
-        String s2 = email.getText();
-        System.out.println("The User Email is: " + s2);
-        Assert.assertEquals(s2, "fake+329@quality-lab.ru");
+    public ReportGroupEditPage checkUserData() {
+        TestData data = new TestData();
+        secondName.getText().contains("Терентьев Сергей");
+        Assert.assertEquals(email.getText(),data.userEmail);
         return this;
     }
 }
