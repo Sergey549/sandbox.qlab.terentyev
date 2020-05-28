@@ -2,22 +2,20 @@ package login;
 
 import base.TestBase;
 import base.TestData;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 import pages.LoginPage;
-
-
 
 public class LoginNegativeTests extends TestBase {
 
-    TestData data = new TestData("TestUser", "Password");
+    TestData negativeData = new TestData("TestUser", "Password");
 
     @Test
     public void incorrectUserNameAndPassword() {
 
         new LoginPage()
                 .openLoginPage()
-                .fillUserNameField(data.userName)
-                .fillUserPasswordField(data.userPassword)
+                .fillUserNameField(negativeData.userName)
+                .fillUserPasswordField(negativeData.userPassword)
                 .catchAnException()
                 .enterButtonClick()
                 .checkValidationWebElementIsPresent()
@@ -26,7 +24,6 @@ public class LoginNegativeTests extends TestBase {
     }
 
   @Test
-
     public void checkUrl() {
 
         new LoginPage()

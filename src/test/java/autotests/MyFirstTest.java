@@ -11,12 +11,14 @@ public class MyFirstTest {
     @BeforeAll
     static void beforeAllTests()
     {
+
         System.out.println("autotests.MyFirstTest class started");
     }
 
     @BeforeEach
     public void beforeEachTest()
     {
+
         System.out.println("Test start");
     }
 

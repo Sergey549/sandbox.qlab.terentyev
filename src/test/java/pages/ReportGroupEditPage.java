@@ -1,12 +1,11 @@
 package pages;
 
-import com.codeborne.selenide.SelenideElement;
 import base.TestData;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 public class ReportGroupEditPage {
 
@@ -21,8 +20,6 @@ public class ReportGroupEditPage {
 
     public ReportGroupEditPage checkUserData() {
         TestData data = new TestData("Сергей Терентьев", null);
-        //System.out.println(data.userName);
-        //System.out.println(name.getText());
         name.getText().contains(data.userName);
         Assert.assertEquals(email.getText(), data.userEmail);
         return this;

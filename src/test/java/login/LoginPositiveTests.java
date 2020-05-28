@@ -1,24 +1,18 @@
 package login;
 
+import base.AuthorizedTestBase;
 import base.TestBase;
-import base.TestData;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 import pages.LoginPage;
 import pages.ReportGroupEditPage;
 
 public class LoginPositiveTests extends TestBase {
 
-    TestData data = new TestData("Сергей Терентьев", "aHbtYp2508912");
-
+    AuthorizedTestBase authorization = new AuthorizedTestBase();
     @Test
-    public void correctUserNameAndPassword() {
-
+    public void checkAuthorizedUserData() {
+        authorization.Authorization();
         ReportGroupEditPage ReportGroupEditPage = new LoginPage()
-                .openLoginPage()
-                .fillUserNameField(data.userName)
-                .fillUserPasswordField(data.userPassword)
-                .catchAnException()
-                .enterButtonClick()
                 .checkCurrentPageUrlIsReportGroupEdit()
                 .clickAvatar()
                 .checkUserData();
