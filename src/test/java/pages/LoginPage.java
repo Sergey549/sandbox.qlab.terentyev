@@ -1,44 +1,32 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.htmlelements.element.Button;
-import ru.yandex.qatools.htmlelements.element.HtmlElement;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
-public class LoginPage extends HtmlElement {
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.driver;
 
-    private final WebDriver driver;
+public class LoginPage {
 
-    @FindBy(name = "_username")
-    private WebElement userField;
 
-    @FindBy(id = "password")
-    private WebElement passwordField;
+    private TextInput userNameField = new TextInput($(new By.ByName("_username")));
+    private TextInput passwordField = new TextInput($(new By.ById("password")));
+    private Button enterButton = new Button($(new By.ByCssSelector("input[value='Войти']")));
 
-    @FindBy(css = "input[value='Войти']")
-    private WebElement enterButton;
-
-    @FindBy(xpath = ".//*[text()='Invalid credentials.']/..")
-    private WebElement hiddenValidationWebElement;
-
-    public LoginPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
-    }
 
     public LoginPage openLoginPage() {
-        driver.get("https://tt-develop.quality-lab.ru/login");
+        open("https://tt-develop.quality-lab.ru/login");
         return this;
     }
 
-    public LoginPage fillUserNameField(String userName) {
-        userField.click();
-        userField.clear();
-        userField.sendKeys(userName);
+    public LoginPage fillUserNameField(String data) {
+        userNameField.click();
+        userNameField.clear();
+        userNameField.sendKeys(data);
         return this;
     }
 
@@ -49,11 +37,11 @@ public class LoginPage extends HtmlElement {
         return this;
     }
 
-    public LoginPage catchAnExceptionMethod() {
+    public LoginPage catchAnException() {
         try {
             checkValidationWebElementIsPresent();
         } catch (NoSuchElementException ignored) {
-           }
+        }
         return this;
     }
 
@@ -63,12 +51,12 @@ public class LoginPage extends HtmlElement {
     }
 
     public LoginPage checkValidationWebElementIsPresent() {
-        hiddenValidationWebElement.isDisplayed();
+        $(new By.ByXPath(".//*[text()='Invalid credentials.']/.."));
         return this;
     }
 
     public LoginPage checkTextInFieldUserNameIsSaved() {
-        String value = userField.getAttribute("value");
+        String value = userNameField.getAttribute("value");
         System.out.println("The User Name is: " + value);
         return this;
     }
@@ -76,21 +64,26 @@ public class LoginPage extends HtmlElement {
     public LoginPage checkPasswordFieldIsEmpty() {
         if (passwordField.getAttribute("value") != "") {
             System.out.println("The Password Field Is Empty");
-        }
-        return this;
+        } return this;
     }
 
     public LoginPage checkCurrentLoginPageUrlIsTrue() {
-        driver.getCurrentUrl();
-        String URL = driver.getCurrentUrl();
+        driver().getCurrentFrameUrl();
+        String URL = driver().getCurrentFrameUrl();
         Assert.assertEquals(URL, "https://tt-develop.quality-lab.ru/login");
         return this;
     }
 
     public ReportGroupEditPage checkCurrentPageUrlIsReportGroupEdit() {
-        driver.getCurrentUrl();
-        String URL = driver.getCurrentUrl();
+        driver().getCurrentFrameUrl();
+        String URL = driver().getCurrentFrameUrl();
         Assert.assertEquals(URL, "https://tt-develop.quality-lab.ru/report/group/edit");
-        return new ReportGroupEditPage(driver);
+        return new ReportGroupEditPage();
     }
+
+    public CalendarPage openCalendarPage() {
+        open("https://tt-develop.quality-lab.ru/calendar/");
+        return new CalendarPage();
+    }
+
 }

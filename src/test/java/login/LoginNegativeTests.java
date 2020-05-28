@@ -1,32 +1,38 @@
 package login;
+
+import base.TestBase;
+import base.TestData;
 import org.junit.Test;
 import pages.LoginPage;
 
+
+
 public class LoginNegativeTests extends TestBase {
+
+    TestData data = new TestData("TestUser", "Password");
 
     @Test
     public void incorrectUserNameAndPassword() {
 
-        new LoginPage(driver)
+        new LoginPage()
                 .openLoginPage()
-                .fillUserNameField("TestUser")
-                .fillUserPasswordField("Password")
-                .catchAnExceptionMethod()
+                .fillUserNameField(data.userName)
+                .fillUserPasswordField(data.userPassword)
+                .catchAnException()
                 .enterButtonClick()
                 .checkValidationWebElementIsPresent()
                 .checkTextInFieldUserNameIsSaved()
                 .checkPasswordFieldIsEmpty();
     }
 
-  // @Test
+  @Test
 
     public void checkUrl() {
 
-        new LoginPage(driver)
+        new LoginPage()
                 .openLoginPage()
                 .enterButtonClick()
-                .catchAnExceptionMethod()
+                .catchAnException()
                 .checkCurrentLoginPageUrlIsTrue();
     }
-
 }
